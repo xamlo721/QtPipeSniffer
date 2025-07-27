@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui serialport network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,6 +9,30 @@ CONFIG += c++11
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+BUILD_DIR = $$PWD/build/
+
+!exists($$BUILD_DIR) {
+    mkpath($$BUILD_DIR)
+}
+
+DESTDIR = $$PWD/build/
+
+OUT_PWD = $$PWD/build/
+
+# Настройка пользовательской команды .ui файлов для преоборазования в ui_*.h файлы
+UI_DIR += $$PWD/build/temp/forms
+
+# Настройка rss пользовательской команды .qrs файлов для преоборазования в qrs_*.h файлы
+RCC_DIR += $$PWD/build/temp/rss
+
+# Настройка пользовательской команды включающей Q_Object заголовочный файл для преобразования
+# в стандартный .h файл
+MOC_DIR += $$PWD/build/temp/moc
+
+# Настройка каталога хранения объектных .o файлов
+OBJECTS_DIR *= $$PWD/build/temp/obj
+
+TARGET = PipeSniffer
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
