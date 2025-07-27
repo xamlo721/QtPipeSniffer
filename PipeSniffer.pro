@@ -47,10 +47,12 @@ DEPENDPATH += \
 
 SOURCES += \
     $${PWD}/src/main.cpp \
-    $${PWD}/src/MainWindow.cpp
+    $${PWD}/src/MainWindow.cpp \
+    src/PipeSocket.cpp
 
 HEADERS += \
-    $${PWD}/src/MainWindow.h
+    $${PWD}/src/MainWindow.h \
+    src/PipeSocket.h
 
 FORMS += \
     $${PWD}/resources/MainWindow.ui
