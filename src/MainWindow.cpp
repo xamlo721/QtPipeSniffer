@@ -22,9 +22,10 @@ void MainWindow::setConnectStatus(bool status) {
 }
 
 void MainWindow::slotOnConnectButtonPressed() {
-    QString pipeName = this->ui->PipeNameLineEdit->text();
+    QString pipeNameSrc = this->ui->PipeNameSrcLineEdit->text();
+    QString pipeNameDst = this->ui->PipeNameDstLineEdit->text();
 
-    emit signalOnPipeConnectRequest(pipeName);
+    emit signalOnPipeConnectRequest(pipeNameSrc, pipeNameDst);
 }
 
 void MainWindow::slotOnClearButtonPressed() {

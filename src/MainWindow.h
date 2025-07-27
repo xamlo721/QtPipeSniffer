@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow {
 
     signals:
 
-        void signalOnPipeConnectRequest(QString pipeName);
+        void signalOnPipeConnectRequest(QString pipeName_src, QString pipeName_dst);
 
 };
 #endif // MAINWINDOW_H

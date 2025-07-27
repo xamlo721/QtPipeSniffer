@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="PipeConnectPushButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>440</x>
       <y>30</y>
       <width>80</width>
       <height>21</height>
@@ -40,7 +40,7 @@
      <string>connect</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="PipeNameLineEdit">
+   <widget class="QLineEdit" name="PipeNameSrcLineEdit">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -56,7 +56,7 @@
    <widget class="QLabel" name="PipeStatusLabel">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>530</x>
       <y>30</y>
       <width>251</width>
       <height>16</height>
@@ -77,6 +77,19 @@
     </property>
     <property name="text">
      <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="PipeNameDstLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>30</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>\\.\pipe\vmware_pipe_1</string>
     </property>
    </widget>
   </widget>
