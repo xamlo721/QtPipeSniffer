@@ -21,5 +21,19 @@ class MainWindow : public QMainWindow {
 
         ~MainWindow();
 
+        void displaySnifferData(const QByteArray &data);
+
+        void setConnectStatus(bool status);
+
+    private slots:
+
+        void slotOnConnectButtonPressed();
+
+        void slotOnClearButtonPressed();
+
+    signals:
+
+        void signalOnPipeConnectRequest(QString pipeName);
+
 };
 #endif // MAINWINDOW_H

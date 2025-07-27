@@ -48,10 +48,12 @@ DEPENDPATH += \
 SOURCES += \
     $${PWD}/src/main.cpp \
     $${PWD}/src/MainWindow.cpp \
+    src/PipeSniffer.cpp \
     src/PipeSocket.cpp
 
 HEADERS += \
     $${PWD}/src/MainWindow.h \
+    src/PipeSniffer.h \
     src/PipeSocket.h
 
 FORMS += \

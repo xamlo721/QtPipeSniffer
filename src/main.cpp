@@ -1,28 +1,18 @@
 #include "MainWindow.h"
 
-#include <QApplication>
-#include "PipeSocket.h"
+#include "PipeSniffer.h"
 
 int main(int argc, char *argv[]) {
 
-    QApplication a(argc, argv);
+    PipeSniffer application(argc, argv);
 
-//    MainWindow w;
+    MainWindow w;
 
-//    w.show();
+    w.show();
 
-    QString pipeName = "\\\\.\\pipe\\vmware_pipe_0";
+    QObject::connect(&application, &PipeSniffer::signalOnDataRecieved, &w, &MainWindow::displaySnifferData);
 
-    PipeSocket m_pipeSocket;
-    m_pipeSocket.setPipeName(pipeName);
-    m_pipeSocket.setAutoReconnect(true, 3000);
+    QObject::connect(&w, &MainWindow::signalOnPipeConnectRequest, &application, &PipeSniffer::slotOnPipeConnect);
 
-    // Подключение к каналу
-    if (!m_pipeSocket.connectToPipe(pipeName)) {
-        qDebug() << "Failed to connect to pipe: " << pipeName;
-    } else {
-        qDebug() << "Pipe: " << pipeName << " connected";
-    }
-
-    return a.exec();
+    return application.exec();
 }
