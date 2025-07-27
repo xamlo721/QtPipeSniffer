@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow {
 
         ~MainWindow();
 
-        void displaySnifferData(const QByteArray &data);
+        void displaySnifferData(const QString & data);
 
         void setConnectStatus(bool status);
 

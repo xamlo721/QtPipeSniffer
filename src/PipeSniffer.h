@@ -9,9 +9,6 @@ class PipeSniffer : public QApplication {
     Q_OBJECT
 
     private:
-
-        QString pipeName_src;
-        QString pipeName_dst;
         PipeSocket m_pipeSocket_src;
         PipeSocket m_pipeSocket_dst;
 
@@ -19,11 +16,18 @@ class PipeSniffer : public QApplication {
         PipeSniffer(int argc, char *argv[]);
 
 
+    private:
+        void onPipeReadData(const QByteArray &data, bool isSrcSide);
+
     signals:
-        void signalOnDataRecieved(const QByteArray & data);
+        void signalOnDataRecieved(const QString & data);
 
     public slots:
         void slotOnPipeConnect(QString pipeName_src, QString pipeName_dst);
+
+    private slots:
+        void slotOnSrcPipeReadData(const QByteArray &data);
+        void slotOnDstPipeReadData(const QByteArray &data);
 
 
 };

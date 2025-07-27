@@ -13,8 +13,8 @@ MainWindow::~MainWindow() {
 }
 
 
-void MainWindow::displaySnifferData(const QByteArray &data) {
-    this->ui->PipeSnifferEextEdit->append(data.toHex());
+void MainWindow::displaySnifferData(const QString & data) {
+    this->ui->PipeSnifferEextEdit->append(data);
 }
 
 void MainWindow::setConnectStatus(bool status) {
