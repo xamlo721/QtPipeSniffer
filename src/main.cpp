@@ -10,6 +10,9 @@ int main(int argc, char *argv[]) {
 
     w.show();
 
+    QObject::connect(&application, &PipeSniffer::signalOnStatusHandled, &w, &MainWindow::setConnectStatus);
+    QObject::connect(&application, &PipeSniffer::signalManageButtonState, &w, &MainWindow::setManageButtonState);
+    QObject::connect(&application, &PipeSniffer::signalManageButtonText, &w, &MainWindow::setManageButtonText);
     QObject::connect(&application, &PipeSniffer::signalOnDataRecieved, &w, &MainWindow::displaySnifferData);
 
     QObject::connect(&w, &MainWindow::signalOnPipeConnectRequest, &application, &PipeSniffer::slotOnPipeConnect);

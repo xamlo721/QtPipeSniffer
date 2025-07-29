@@ -48,14 +48,14 @@
       <item>
        <widget class="QPushButton" name="PipeConnectPushButton">
         <property name="text">
-         <string>connect</string>
+         <string>Connect</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="PipeStatusLabel">
         <property name="text">
-         <string>Pipe Status:</string>
+         <string>Pipe Status: No connect</string>
         </property>
        </widget>
       </item>

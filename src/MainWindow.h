@@ -21,9 +21,15 @@ class MainWindow : public QMainWindow {
 
         ~MainWindow();
 
+    public slots:
+
         void displaySnifferData(const QString & data);
 
-        void setConnectStatus(bool status);
+        void setConnectStatus(const QString text);
+
+        void setManageButtonState(const bool state);
+
+        void setManageButtonText(const QString text);
 
     private slots:
 

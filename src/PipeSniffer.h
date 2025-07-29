@@ -12,6 +12,8 @@ class PipeSniffer : public QApplication {
         PipeSocket m_pipeSocket_src;
         PipeSocket m_pipeSocket_dst;
 
+        bool connectFlag = false;
+
     public:
         PipeSniffer(int argc, char *argv[]);
 
@@ -22,12 +24,20 @@ class PipeSniffer : public QApplication {
         QString splitByTwoSymbols(QString &str) const;
 
     signals:
+        void signalOnStatusHandled(const QString text);
+
+        void signalManageButtonState(const bool enable);
+
+        void signalManageButtonText(const QString text);
+
         void signalOnDataRecieved(const QString & data);
 
     public slots:
         void slotOnPipeConnect(QString pipeName_src, QString pipeName_dst);
 
     private slots:
+        void slotOnManageButtonDisableTimeout();
+
         void slotOnSrcPipeReadData(const QByteArray &data);
         void slotOnDstPipeReadData(const QByteArray &data);
 
