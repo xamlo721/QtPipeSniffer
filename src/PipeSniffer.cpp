@@ -12,6 +12,8 @@ PipeSniffer::PipeSniffer(int argc, char *argv[])
     //swap
     QObject::connect(&m_pipeSocket_src, &PipeSocket::dataReceived, &m_pipeSocket_dst, &PipeSocket::writeData);
 
+    //swap
+    QObject::connect(&m_pipeSocket_dst, &PipeSocket::dataReceived, &m_pipeSocket_src, &PipeSocket::writeData);
 }
 
 
