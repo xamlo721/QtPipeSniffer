@@ -19,6 +19,8 @@ class PipeSniffer : public QApplication {
     private:
         void onPipeReadData(const QByteArray &data, bool isSrcSide);
 
+        QString splitByTwoSymbols(QString &str) const;
+
     signals:
         void signalOnDataRecieved(const QString & data);
 

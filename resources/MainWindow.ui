@@ -19,15 +19,25 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLineEdit" name="PipeNameSrcLineEdit">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>\\.\pipe\vmware_pipe_0</string>
+         <string>vmware_pipe_0</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="PipeNameDstLineEdit">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>\\.\pipe\vmware_pipe_1</string>
+         <string>vmware_pipe_1</string>
         </property>
        </widget>
       </item>
@@ -60,6 +70,11 @@
     </item>
     <item>
      <widget class="QTextEdit" name="PipeSnifferEextEdit">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>

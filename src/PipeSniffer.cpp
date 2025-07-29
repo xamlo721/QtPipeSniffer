@@ -1,5 +1,7 @@
 #include "PipeSniffer.h"
 
+#include <QRegularExpression>
+
 PipeSniffer::PipeSniffer(int argc, char *argv[])
     : QApplication(argc, argv) {
 
@@ -29,7 +31,11 @@ void PipeSniffer::onPipeReadData(const QByteArray &data, bool isSrcSide) {
 
     QString hexData = data.toHex();
 
-    hexData.prepend(isSrcSide ? " --> " : " <-- ");
+    hexData = this->splitByTwoSymbols(hexData);
+
+    const QString srcSideStr = "    [" + this->m_pipeSocket_src.pipeName() + " --> " + this->m_pipeSocket_dst.pipeName() + "]    ";
+    const QString dstSideStr = "    [" + this->m_pipeSocket_src.pipeName() + " <-- " + this->m_pipeSocket_dst.pipeName() + "]    ";
+    hexData.prepend(isSrcSide ? srcSideStr : dstSideStr);
     emit signalOnDataRecieved(hexData);
 }
 
@@ -57,3 +63,6 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
     }
 }
 
+QString PipeSniffer::splitByTwoSymbols(QString &str) const {
+    return str.replace(QRegularExpression("(.{2})(?!$)"), "\\1 ");
+}
