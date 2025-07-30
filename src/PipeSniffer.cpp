@@ -35,8 +35,8 @@ void PipeSniffer::onPipeReadData(const QByteArray &data, bool isSrcSide) {
     // Сплитим строку по байту
     hexData = this->splitByTwoSymbols(hexData);
 
-    const QString srcSideStr = "    [" + this->m_pipeSocket_src.pipeName() + " --> " + this->m_pipeSocket_dst.pipeName() + "]    ";
-    const QString dstSideStr = "    [" + this->m_pipeSocket_src.pipeName() + " <-- " + this->m_pipeSocket_dst.pipeName() + "]    ";
+    const QString srcSideStr = "[" + this->m_pipeSocket_src.pipeName() + " --> " + this->m_pipeSocket_dst.pipeName() + "]    ";
+    const QString dstSideStr = "[" + this->m_pipeSocket_src.pipeName() + " <-- " + this->m_pipeSocket_dst.pipeName() + "]    ";
     hexData.prepend(isSrcSide ? srcSideStr : dstSideStr);
     emit signalOnDataRecieved(hexData);
 }
@@ -61,7 +61,7 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
         emit signalOnStatusHandled("No connect");
 
         emit signalOnDataRecieved("Pipe src : " + pipeName_src + " disconnected");
-        emit signalOnDataRecieved("Pipe src : " + pipeName_dst + " disconnected");
+        emit signalOnDataRecieved("Pipe dst : " + pipeName_dst + " disconnected");
 
         return;
     }
@@ -91,7 +91,7 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
     if (!stupidFlagDst) {
         emit signalOnDataRecieved("Failed to connect to dst pipe: " + pipeName_dst);
     } else {
-        emit signalOnDataRecieved("Pipe src : " + pipeName_dst + " connected");
+        emit signalOnDataRecieved("Pipe dst : " + pipeName_dst + " connected");
     }
 
 
