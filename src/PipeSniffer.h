@@ -21,7 +21,13 @@ class PipeSniffer : public QApplication {
     private:
         void onPipeReadData(const QByteArray &data, bool isSrcSide);
 
-        QString splitByTwoSymbols(QString &str) const;
+
+        /**
+         * @brief splitHexByte - метод разделения 16-тиричной строки по байтам
+         * @param str - 16-тиричная строка
+         * @return Разделенная по байтам 16-тиричная строка
+         */
+        QString splitHexByte(QString &str) const;
 
     signals:
         void signalOnStatusHandled(const QString text);
@@ -36,6 +42,10 @@ class PipeSniffer : public QApplication {
         void slotOnPipeConnect(QString pipeName_src, QString pipeName_dst);
 
     private slots:
+
+        /**
+         * @brief slotOnManageButtonDisableTimeout - слот для обработки таймаута выключения кнопки управления соединением
+         */
         void slotOnManageButtonDisableTimeout();
 
         void slotOnSrcPipeReadData(const QByteArray &data);

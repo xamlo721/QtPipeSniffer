@@ -46,7 +46,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QPushButton" name="PipeConnectPushButton">
+       <widget class="QPushButton" name="PipeManagePushButton">
         <property name="text">
          <string>Connect</string>
         </property>

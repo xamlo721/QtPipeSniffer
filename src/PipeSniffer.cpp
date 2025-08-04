@@ -33,7 +33,7 @@ void PipeSniffer::onPipeReadData(const QByteArray &data, bool isSrcSide) {
     QString hexData = data.toHex();
 
     // Сплитим строку по байту
-    hexData = this->splitByTwoSymbols(hexData);
+    hexData = this->splitHexByte(hexData);
 
     const QString srcSideStr = "[" + this->m_pipeSocket_src.pipeName() + " --> " + this->m_pipeSocket_dst.pipeName() + "]    ";
     const QString dstSideStr = "[" + this->m_pipeSocket_src.pipeName() + " <-- " + this->m_pipeSocket_dst.pipeName() + "]    ";
@@ -105,10 +105,18 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
     }
 }
 
-QString PipeSniffer::splitByTwoSymbols(QString &str) const {
+/**
+ * @brief splitHexByte - метод разделения 16-тиричной строки по байтам
+ * @param str - 16-тиричная строка
+ * @return Разделенная по байтам 16-тиричная строка
+ */
+QString PipeSniffer::splitHexByte(QString &str) const {
     return str.replace(QRegularExpression("(.{2})(?!$)"), "\\1 ");
 }
 
+/**
+ * @brief slotOnManageButtonDisableTimeout - слот для обработки таймаута выключения кнопки управления соединением
+ */
 void PipeSniffer::slotOnManageButtonDisableTimeout() {
     emit signalManageButtonState(true);
 }

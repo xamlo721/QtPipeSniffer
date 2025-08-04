@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/icons/pipe32.png"));
 
-    QObject::connect(this->ui->PipeConnectPushButton, &QPushButton::pressed, this, &MainWindow::slotOnConnectButtonPressed);
+    QObject::connect(this->ui->PipeManagePushButton, &QPushButton::pressed, this, &MainWindow::slotOnConnectButtonPressed);
     QObject::connect(this->ui->ClearPushButton, &QPushButton::pressed, this, &MainWindow::slotOnClearButtonPressed);
 }
 
@@ -27,11 +27,11 @@ void MainWindow::setConnectStatus(const QString text) {
 }
 
 void MainWindow::setManageButtonState(const bool state) {
-    state ? this->ui->PipeConnectPushButton->setEnabled(true) : this->ui->PipeConnectPushButton->setDisabled(true);
+    state ? this->ui->PipeManagePushButton->setEnabled(true) : this->ui->PipeManagePushButton->setDisabled(true);
 }
 
 void MainWindow::setManageButtonText(const QString text) {
-    this->ui->PipeConnectPushButton->setText(text);
+    this->ui->PipeManagePushButton->setText(text);
 }
 
 void MainWindow::slotOnConnectButtonPressed() {
