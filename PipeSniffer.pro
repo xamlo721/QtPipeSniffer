@@ -55,6 +55,7 @@ SOURCES += \
 
 HEADERS += \
     $${PWD}/src/MainWindow.h \
+    src/EnumConnectionStatus.h \
     src/PipeSniffer.h \
     src/PipeSocket.h
 

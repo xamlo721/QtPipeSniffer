@@ -20,9 +20,28 @@ void MainWindow::displaySnifferData(const QString & data) {
     this->ui->PipeSnifferEextEdit->append(data);
 }
 
-void MainWindow::setConnectStatus(const QString text) {
+void MainWindow::slotOnConnectionStatusChanged(const EnumConnectionStatus status) {
     QString resText = "Pipe Status: ";
-    resText += text;
+    resText += status.toString();
+
+    switch (status) {
+
+        case EnumConnectionStatus::Connected: {
+            this->setDisablePipeEdit();
+            break;
+        }
+
+        case EnumConnectionStatus::Disconnected: {
+            this->setEnablePipeEdit();
+            break;
+        }
+
+        default: {
+            return;
+        }
+
+    }
+
     this->ui->PipeStatusLabel->setText(resText);
 }
 
@@ -45,3 +64,12 @@ void MainWindow::slotOnClearButtonPressed() {
     this->ui->PipeSnifferEextEdit->clear();
 }
 
+void MainWindow::setEnablePipeEdit() {
+    this->ui->PipeNameSrcLineEdit->setEnabled(true);
+    this->ui->PipeNameDstLineEdit->setEnabled(true);
+}
+
+void MainWindow::setDisablePipeEdit() {
+    this->ui->PipeNameSrcLineEdit->setDisabled(true);
+    this->ui->PipeNameDstLineEdit->setDisabled(true);
+}

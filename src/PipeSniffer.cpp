@@ -58,7 +58,7 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
         emit signalManageButtonState(false);
         QTimer::singleShot(1000, this, &PipeSniffer::slotOnManageButtonDisableTimeout);
 
-        emit signalOnStatusHandled("No connect");
+        emit signalConnectionStatusChanged(EnumConnectionStatus::Disconnected);
 
         emit signalOnDataRecieved("Pipe src : " + pipeName_src + " disconnected");
         emit signalOnDataRecieved("Pipe dst : " + pipeName_dst + " disconnected");
@@ -100,11 +100,11 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
     if(!stupidFlagSrc || !stupidFlagDst) {
         m_pipeSocket_src.disconnectFromPipe();
         m_pipeSocket_dst.disconnectFromPipe();
-        emit signalOnStatusHandled("No connect");
+        emit signalConnectionStatusChanged(EnumConnectionStatus::Disconnected);
         emit signalOnDataRecieved("Failed to connect pipes! Connection not set!");
     } else {
         this->connectFlag = true;
-        emit signalOnStatusHandled("Connect");
+        emit signalConnectionStatusChanged(EnumConnectionStatus::Connected);
         emit signalManageButtonText("Disconnect");
         emit signalOnDataRecieved("Successfull connect pipes!");
     }

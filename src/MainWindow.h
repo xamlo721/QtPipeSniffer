@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "EnumConnectionStatus.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,6 +17,11 @@ class MainWindow : public QMainWindow {
 
         Ui::MainWindow *ui;
 
+
+
+        void setEnablePipeEdit();
+        void setDisablePipeEdit();
+
     public:
 
         MainWindow(QWidget *parent = nullptr);
@@ -25,7 +32,7 @@ class MainWindow : public QMainWindow {
 
         void displaySnifferData(const QString & data);
 
-        void setConnectStatus(const QString text);
+        void slotOnConnectionStatusChanged(const EnumConnectionStatus status);
 
         void setManageButtonState(const bool state);
 

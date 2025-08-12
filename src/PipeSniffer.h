@@ -2,7 +2,9 @@
 #define PIPESNIFFER_H
 
 #include <QApplication>
+
 #include "PipeSocket.h"
+#include "EnumConnectionStatus.h"
 
 class PipeSniffer : public QApplication {
 
@@ -30,7 +32,7 @@ class PipeSniffer : public QApplication {
         QString splitHexByte(QString &str) const;
 
     signals:
-        void signalOnStatusHandled(const QString text);
+        void signalConnectionStatusChanged(const EnumConnectionStatus status);
 
         void signalManageButtonState(const bool enable);
 
