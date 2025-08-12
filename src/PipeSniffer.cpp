@@ -56,12 +56,13 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
 
         // Выключим кнопку и поставим таймер на включение
         emit signalManageButtonState(false);
-        QTimer::singleShot(2000, this, &PipeSniffer::slotOnManageButtonDisableTimeout);
+        QTimer::singleShot(1000, this, &PipeSniffer::slotOnManageButtonDisableTimeout);
 
         emit signalOnStatusHandled("No connect");
 
         emit signalOnDataRecieved("Pipe src : " + pipeName_src + " disconnected");
         emit signalOnDataRecieved("Pipe dst : " + pipeName_dst + " disconnected");
+        emit signalOnDataRecieved("Successfull disconnect pipes!");
 
         return;
     }
@@ -69,7 +70,7 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
 
     // Выключим кнопку и поставим таймер на включение
     emit signalManageButtonState(false);
-    QTimer::singleShot(4000, this, &PipeSniffer::slotOnManageButtonDisableTimeout);
+    QTimer::singleShot(1000, this, &PipeSniffer::slotOnManageButtonDisableTimeout);
 
     m_pipeSocket_src.setPipeName(pipeName_src);
     m_pipeSocket_src.setAutoReconnect(true, 3000);
@@ -97,11 +98,15 @@ void PipeSniffer::slotOnPipeConnect(QString pipeName_src, QString pipeName_dst) 
 
     // Установка статуса
     if(!stupidFlagSrc || !stupidFlagDst) {
-        emit signalOnStatusHandled("Disconnect");
+        m_pipeSocket_src.disconnectFromPipe();
+        m_pipeSocket_dst.disconnectFromPipe();
+        emit signalOnStatusHandled("No connect");
+        emit signalOnDataRecieved("Failed to connect pipes! Connection not set!");
     } else {
         this->connectFlag = true;
         emit signalOnStatusHandled("Connect");
         emit signalManageButtonText("Disconnect");
+        emit signalOnDataRecieved("Successfull connect pipes!");
     }
 }
 
